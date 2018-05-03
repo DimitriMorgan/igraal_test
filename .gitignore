@@ -1,0 +1,35 @@
+/app/config/parameters.yml
+/app/phpunit.xml
+
+/var/*
+!/var/cache
+/var/cache/*
+
+!/var/logs
+/var/logs/*
+
+!/var/sessions
+/var/sessions/*
+!var/SymfonyRequirements.php
+
+/vendor/
+/web/bundles/
+
+/.idea/
+/node_modules/
+/npm-debug.log
+/yarn-error.log
+
+# PhpUnit code coverage rapport
+/coverage/
+
+# Php cs-fixer cache
+/.php_cs.cache
+
+# Docker shared volumns files
+.data/
+.env
+
+# Keep all .gitkeep file
+# /!\ Always keep this at the end of the file
+!.gitkeep
