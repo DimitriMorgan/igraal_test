@@ -1,0 +1,16 @@
+Domain\Dto\User\RegisterDto:
+    properties:
+        email:
+            - NotBlank: ~
+        password:
+            - NotBlank: ~
+        name:
+            - NotBlank: ~
+        profileUrl:
+            - NotBlank: ~
+        lastLogin:
+            - NotBlank: ~
+            - DateTime: ~
+        creationDate:
+            - NotBlank: ~
+            - DateTime: ~
