@@ -1,0 +1,21 @@
+Domain\Model\User:
+    type: entity
+    table: user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        email:
+            type: string
+        password:
+            type: string
+        name:
+            type: string
+        profileUrl:
+            type: string
+        lastLogin:
+            type: datetime
+        creationDate:
+            type: datetime
