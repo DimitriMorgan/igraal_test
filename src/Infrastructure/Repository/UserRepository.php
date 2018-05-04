@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: wilson
- * Date: 03/05/18
- * Time: 16:33
- */
 
 namespace Infrastructure\Repository;
 
@@ -26,7 +20,12 @@ class UserRepository implements UserRepositoryInterface
     public function add(User $user): void
     {
         $this->entityManager->persist($user);
-        $this->entityManager->flush();
+        $this->entityManager->flush($user);
+    }
+
+    public function set(User $user): void
+    {
+        $this->entityManager->flush($user);
     }
 
     public function getByIdWithCommissions(int $id): ?User
@@ -51,6 +50,19 @@ class UserRepository implements UserRepositoryInterface
             ->from(User::class, 'user')
             ->where('user.id = :id')
             ->setParameter('id', $id)
+        ;
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    public function getByEmail(string $email): ?User
+    {
+        $queryBuilder = $this->entityManager
+            ->createQueryBuilder()
+            ->select('user')
+            ->from(User::class, 'user')
+            ->where('user.email = :email')
+            ->setParameter('email', $email)
         ;
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
