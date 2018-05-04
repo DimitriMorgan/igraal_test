@@ -5,17 +5,16 @@ namespace AppBundle\Controller\User;
 use AppBundle\Form\Type\RegisterUserType;
 use Application\Command\User\Register;
 use Application\Command\User\RegisterHandler;
+use Infrastructure\Helpers\JsonResponse;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class RegisterAction
 {
     /** @var FormFactoryInterface */
     private $formFactory;
-    /**
-     * @var RegisterHandler
-     */
+
+    /** @var RegisterHandler */
     private $registerHandler;
 
     public function __construct(FormFactoryInterface $formFactory, RegisterHandler $registerHandler)
@@ -24,7 +23,7 @@ class RegisterAction
         $this->registerHandler = $registerHandler;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): JsonResponse
     {
         $form = $this->formFactory->create(RegisterUserType::class);
         $form->submit($request->request->all(), false);
