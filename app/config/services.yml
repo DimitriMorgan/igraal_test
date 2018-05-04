@@ -40,3 +40,10 @@ services:
     AppBundle\ParamConverter\User\UserIdParamConverter:
         tags:
             - { name: 'request.param_converter', priority: 2, converter: 'participant_type_view_param_converter' }
+
+    #
+    # Console Command
+    #
+    Infrastructure\Command\SendMail:
+        tags:
+            - { name: console.command }
