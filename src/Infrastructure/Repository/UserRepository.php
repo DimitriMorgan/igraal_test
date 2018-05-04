@@ -28,4 +28,31 @@ class UserRepository implements UserRepositoryInterface
         $this->entityManager->persist($user);
         $this->entityManager->flush();
     }
+
+    public function getByIdWithCommissions(int $id): ?User
+    {
+        $queryBuilder = $this->entityManager
+            ->createQueryBuilder()
+            ->select('user')
+            ->from(User::class, 'user')
+            ->join('user.commissions', 'commissions', 'WITH', 'commissions.idUser = :id')
+            ->where('user.id = :id')
+            ->setParameter('id', $id)
+        ;
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    public function getById(int $id): ?User
+    {
+        $queryBuilder = $this->entityManager
+            ->createQueryBuilder()
+            ->select('user')
+            ->from(User::class, 'user')
+            ->where('user.id = :id')
+            ->setParameter('id', $id)
+        ;
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
 }
