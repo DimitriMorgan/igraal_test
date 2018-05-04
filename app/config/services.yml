@@ -7,13 +7,18 @@ services:
         public: false
 
     AppBundle\Controller\:
-        resource: '../../src/AppBundle/Controller/*'
-        public: true
+        resource: '../../src/AppBundle/Controller'
+        tags: ['controller.service_arguments']
 
     #
-    # Handlers
+    # Handlers - Command
     #
     Application\Command\User\RegisterHandler: ~
+
+    #
+    # Handlers - Query
+    #
+    Application\Query\User\DetailsHandler: ~
 
     #
     # Repositories
