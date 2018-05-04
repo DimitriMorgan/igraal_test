@@ -1,0 +1,19 @@
+Domain\Model\Commission:
+    type: entity
+    table: commission
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        cashback:
+            type: float
+        date:
+            type: datetime
+    manyToOne:
+        idUser:
+            targetEntity: Domain\Model\User
+            joinColumn:
+                name: idUser
+                onDelete: CASCADE

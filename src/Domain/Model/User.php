@@ -2,6 +2,8 @@
 
 namespace Domain\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class User
 {
     /** @var int */
@@ -17,28 +19,32 @@ class User
     private $name;
 
     /** @var string */
-    private $profileUrl;
+    private $profileurl;
 
     /** @var \DateTimeInterface */
-    private $lastLogin;
+    private $lastlogin;
 
     /** @var \DateTimeInterface */
-    private $creationDate;
+    private $creationdate;
+
+    /** @var Commission[] */
+    private $commissions;
 
     public function __construct(
         string $email,
         string $password,
         string $name,
-        string $profileUrl,
-        \DateTimeInterface $lastLogin,
-        \DateTimeInterface $creationDate
+        string $profileurl,
+        \DateTimeInterface $lastlogin,
+        \DateTimeInterface $creationdate
     ) {
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
-        $this->profileUrl = $profileUrl;
-        $this->lastLogin = $lastLogin;
-        $this->creationDate = $creationDate;
+        $this->profileurl = $profileurl;
+        $this->lastlogin = $lastlogin;
+        $this->creationdate = $creationdate;
+        $this->commissions = new ArrayCollection();
     }
 
     public function getId(): int
@@ -78,31 +84,47 @@ class User
 
     public function getProfileUrl(): string
     {
-        return $this->profileUrl;
+        return $this->profileurl;
     }
 
-    public function setProfileUrl(string $profileUrl): void
+    public function setProfileUrl(string $profileurl): void
     {
-        $this->profileUrl = $profileUrl;
+        $this->profileurl = $profileurl;
     }
 
     public function getLastLogin(): \DateTimeInterface
     {
-        return $this->lastLogin;
+        return $this->lastlogin;
     }
 
-    public function setLastLogin(\DateTimeInterface $lastLogin): void
+    public function setLastLogin(\DateTimeInterface $lastlogin): void
     {
-        $this->lastLogin = $lastLogin;
+        $this->lastlogin = $lastlogin;
     }
 
     public function getCreationDate(): \DateTimeInterface
     {
-        return $this->creationDate;
+        return $this->creationdate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creationDate): void
+    public function setCreationDate(\DateTimeInterface $creationdate): void
     {
-        $this->creationDate = $creationDate;
+        $this->creationdate = $creationdate;
+    }
+
+    /**
+     * @param Commission[] $commissions
+     */
+    public function setCommissions(array $commissions): void
+    {
+        $this->commissions = $commissions;
+    }
+
+    /**
+     * @return Commission[]
+     */
+    public function getCommissions(): array
+    {
+        return $this->commissions->toArray();
     }
 }

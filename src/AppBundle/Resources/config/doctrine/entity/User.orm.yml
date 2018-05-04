@@ -13,9 +13,14 @@ Domain\Model\User:
             type: string
         name:
             type: string
-        profileUrl:
+        profileurl:
             type: string
-        lastLogin:
+        lastlogin:
             type: datetime
-        creationDate:
+        creationdate:
             type: datetime
+    oneToMany:
+        commissions:
+            targetEntity: Domain\Model\Commission
+            mappedBy: idUser
+            cascade: ["persist"]

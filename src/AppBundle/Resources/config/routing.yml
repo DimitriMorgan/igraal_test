@@ -2,3 +2,10 @@ user_register:
     path: /user/register
     methods:  [POST]
     defaults: { _controller: AppBundle\Controller\User\RegisterAction }
+
+user_details_with_commissions:
+    path: /user/{userId}
+    methods: [GET]
+    requirements:
+        userId: \d+
+    defaults: { _controller: AppBundle\Controller\User\DetailsAction }
